@@ -29,7 +29,7 @@ const API = {
 					searchString += `&userId=${id}`;
 				});
 				return fetch(
-					`http://localhost:8088/tasks/?userId=${currentUserId}${searchString}&_sort=dueDate&_order=asc&completed=no`
+					`http://localhost:8088/tasks/?userId=${currentUserId}${searchString}&_expand=user&_sort=dueDate&_order=asc&completed=no`
 				).then(response => response.json());
 			});
 	},
@@ -39,7 +39,7 @@ const API = {
 			searchString += `&userId=${id}`;
 		});
 		return fetch(
-			`http://localhost:8088/tasks/?userId=${currentUserId}${searchString}&_sort=dueDate&_order=asc&completed=yes`
+			`http://localhost:8088/tasks/?userId=${currentUserId}${searchString}&_expand=user&_sort=dueDate&_order=asc&completed=yes`
 		).then(response => response.json());
 	},
 	deleteTask: taskId => {
@@ -111,9 +111,9 @@ const WEB = {
 		return `
 			<div class="friendsTaskContainer">
 				<div class="friendsTasks">
+					<p>Encourage ${obj.user.userName} to:
 					<h5>${obj.title}</h5>
-					<p>Target Date: ${obj.dueDate} </p>
-					<p>completed? ${obj.completed}</p>
+					<p>Target Date: ${obj.dueDate} </p>	
 				</div>
 				<div class="userImage">
 						<img class="profileImg" src="/src/images/users/${obj.userId}.png">
@@ -123,9 +123,9 @@ const WEB = {
 	},
 	myFinishedTaskHTML: obj => {
 		return `
-            <div class="myTasks">
+			<div class="myTasks">
+				<p> YEAH, way to go ${obj.user.userName}!
                 <h5>${obj.title}</h5>
-                <p>Target Date: ${obj.dueDate} </p>
                 <p>completed?: ${obj.completed}</p>
                 <button type="button" class="delete-button" id="delete--${obj.id}">DELETE</button>
             </div>
@@ -133,10 +133,10 @@ const WEB = {
 	},
 	friendsFinishedTaskHTML: obj => {
 		return `
-            <div class="friendsTasks">
+			<div class="friendsTasks">
+				<p> Woooo, ${obj.user.userName} did it!!! 
                 <h5>${obj.title}</h5>
-                <p>Target Date: ${obj.dueDate} </p>
-                <p>completed?: ${obj.completed}</p>   
+                <p>Give them a huge high-five!! </p>  
             </div>
             `;
 	}
