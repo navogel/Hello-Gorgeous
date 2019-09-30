@@ -1,9 +1,12 @@
 /* color scheme */
-
-.leftCol {
-	background-color: #95d1c7;
-	border-radius: 10px;
-	margin: 0.5em;
+a {
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	word-break: break-all;
+	-ms-hyphens: auto;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
 }
 
 #tasks {
@@ -27,9 +30,10 @@
 }
 
 #chatroom-container {
-	background-color: #a09ab2;
+	background-color: #967bb6;
 	margin: 0.5em;
 	border-radius: 10px;
+	padding: 0.5em;
 }
 
 /* primary layout */
@@ -37,12 +41,16 @@
 h1 {
 	font-family: "Notable", sans-serif;
 	letter-spacing: 5px;
+	text-align: center;
 }
 body {
 	display: flex;
 	flex-direction: row;
 	font-family: "Oswald", sans-serif;
 	justify-content: center;
+	flex-wrap: wrap;
+	margin: auto;
+	max-width: 900px;
 }
 
 .leftCol {
@@ -50,27 +58,50 @@ body {
 	flex-direction: column;
 	padding-bottom: 2em;
 	padding: 1em;
+	flex-basis: 30%;
+	flex: 0.7;
+	background-color: #95d1c7;
+	border-radius: 10px;
+	margin: 0.5em;
 }
 
 .rightCol {
 	display: flex;
 	flex-direction: column;
-	max-width: 600px;
+	max-width: 700px;
+	min-width: 350px;
+	margin-top: 0.5em;
+	flex-basis: 70%;
+	flex: 2;
 }
 
 .taskContainer,
-.myChatContainer,
 .eventContainer,
 .articleContainer {
 	display: flex;
+	max-width: 83%;
+}
+
+.myChatContainer {
+	display: flex;
+	max-width: 90%;
 }
 
 .friendsTaskContainer,
-.friendChatContainer,
 .friendEventContainer,
 .friendArticleContainer {
 	display: flex;
 	align-self: flex-end;
+	align-items: baseline;
+	justify-content: flex-end;
+	max-width: 83%;
+}
+.friendChatContainer {
+	display: flex;
+	align-self: flex-end;
+	align-items: baseline;
+	justify-content: flex-end;
+	max-width: 90%;
 }
 
 .profileImg {
@@ -103,17 +134,12 @@ body {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	overflow: auto;
-	height: auto;
+	padding: 0.5em 0.5em;
 }
 
 #friends-list {
 	display: flex;
 	flex-direction: column;
-	/* width: 15%; */
-	/* overflow: auto; */
-	/* height: 420px; */
-	/* border-left: 0.01em solid black; */
 	justify-content: center;
 }
 
@@ -122,6 +148,9 @@ body {
 	padding: 0.5em;
 	margin: 1em, 0em;
 	margin-top: 2em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .friendsList {
@@ -133,7 +162,9 @@ body {
 
 .message {
 	/* border-bottom: 2px lightgray solid; */
-	padding-left: 2%;
+
+	display: flex;
+	flex-direction: column;
 }
 
 .message-value {
@@ -171,10 +202,8 @@ body {
 }
 
 .chatImg {
-	margin: 0.5em 1em;
-	height: 50px;
-	width: 50px;
-	margin-top: 20px;
+	margin-top: 0.5em;
+	height: 40px;
 }
 /* tasks css */
 
@@ -382,9 +411,11 @@ body {
 
 .edit-button {
 	position: relative;
+	align-self: flex-end;
 	left: 29px;
 	bottom: -5px;
-	display: inline-block;
+	display: block;
+	width: min-content;
 	padding: 0.1em 0.8em;
 	padding-bottom: 0.2em;
 	border: 0.07em solid white;
@@ -585,7 +616,80 @@ fieldset {
 
 .auth-section {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+	flex-wrap: wrap;
+}
+
+.logoContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+}
+
+.title {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.firstWord {
+	display: flex;
+	justify-content: baseline;
+	width: 100%;
+	flex-wrap: wrap;
+}
+
+.secondWord {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	flex-wrap: wrap;
+}
+
+.firstWord > img,
+.secondWord > img {
+	margin: 0.5em;
+}
+
+/* chat styling */
+
+.message-value {
+	margin-bottom: 0em;
+	margin-top: 0;
+	font-style: bold;
+	font-size: 1.2em;
+}
+
+.message-date,
+.message-name {
+	font-size: 0.8em;
+	position: relative;
+	/* top: -20px; */
+}
+
+h5 {
+	font-size: 1.3em;
+	margin: 0.5em 0em 0em 0em;
+}
+
+.dont-break-out {
+	/* These are technically the same, but use both */
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+
+	-ms-word-break: break-all;
+	/* This is the dangerous one in WebKit, as it breaks things wherever */
+	word-break: break-all;
+	/* Instead use this non-standard one: */
+	word-break: break-word;
+
+	/* Adds a hyphen where the word breaks, if supported (No Blink) */
+	-ms-hyphens: auto;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
 }

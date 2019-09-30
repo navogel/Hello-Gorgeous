@@ -39,9 +39,7 @@ const API = {
 		});
 	},
 	getArticle: articleId => {
-		return fetch(`http://localhost:8088/articles/${articleId}`).then(response =>
-			response.json()
-		);
+		return fetch(`http://localhost:8088/articles/${articleId}`).then(response => response.json());
 	},
 	editArticle: articleId => {
 		const updatedObject = {
@@ -83,10 +81,10 @@ const WEB = {
 					<img class="profileImg" src="/src/images/users/${obj.userId}.png">
 				</div>
             <div class="myArticles">
-                <h5>${obj.title}<h5>
-                <p>Date: ${obj.date} </p>
-                <p>url: ${obj.url}</p>
-                <p>summary: ${obj.summary}</p>
+                <h5>${obj.title}</h5>
+                
+                <a target="_blank" href="${obj.url}">${obj.url}</a>
+                <p>"${obj.summary}"</p>
                 <button class="edit-button" type="button" id="edit--${obj.id}">EDIT</button>
                 <button type="button" class="delete-button" id="delete--${obj.id}">DELETE</button>
 			</div>
@@ -97,10 +95,10 @@ const WEB = {
 		return `
 		<div class="friendArticleContainer">
             <div class="friendsArticles">
-                <h5>${obj.title}<h5>
-                <p>Date: ${obj.date} </p>
-                <p>url: ${obj.url}</p>
-                <p>summary: ${obj.summary}</p>
+                <h5>${obj.title}</h5>
+                
+                <a target="_blank" href="${obj.url}">${obj.url}</a>
+                <p>"${obj.summary}"</p>
 			</div>
 			<div class="userImage">
 					<img class="profileImg" src="/src/images/users/${obj.userId}.png">
@@ -132,10 +130,7 @@ const articleEvents = {
 	},
 	generateArticlesOnClick: () => {
 		window.addEventListener("click", event => {
-			if (
-				event.target.id === "articles" &&
-				event.target.classList.contains("dropBtn")
-			) {
+			if (event.target.id === "articles" && event.target.classList.contains("dropBtn")) {
 				console.log("you clicked articles");
 				API.getArticles().then(data => DOM.addArticlesToDom(data));
 			}
@@ -143,63 +138,57 @@ const articleEvents = {
 	},
 	//article Listener for Submitting/editing
 	submitEditArticles: () => {
-		document
-			.querySelector("#submitArticle")
-			.addEventListener("click", event => {
-				let hiddenId = document.querySelector("#articleId").value;
-				if (hiddenId === "") {
-					const newArticle = {
-						userId: parseInt(sessionStorage.getItem("userId")),
-						title: document.querySelector("#articleTitle").value,
-						date: document.querySelector("#articleDate").value,
-						location: document.querySelector("#articleURL").value,
-						summary: document.querySelector("#articleSummary").value
-					};
-					if (sessionStorage.getItem("userId")) {
-						API.saveArticle(newArticle).then(() => {
-							API.getArticles().then(data => DOM.addArticlesToDom(data));
-						});
-					}
-					document.querySelector("#articleTitle").value = "";
-					document.querySelector("#articleDate").value = "";
-					document.querySelector("#articleURL").value = "";
-					document.querySelector("#articleSummary").value = "";
-				} else {
-					API.editArticle(hiddenId).then(() => {
+		document.querySelector("#submitArticle").addEventListener("click", event => {
+			let hiddenId = document.querySelector("#articleId").value;
+			if (hiddenId === "") {
+				const newArticle = {
+					userId: parseInt(sessionStorage.getItem("userId")),
+					title: document.querySelector("#articleTitle").value,
+					date: document.querySelector("#articleDate").value,
+					location: document.querySelector("#articleURL").value,
+					summary: document.querySelector("#articleSummary").value
+				};
+				if (sessionStorage.getItem("userId")) {
+					API.saveArticle(newArticle).then(() => {
 						API.getArticles().then(data => DOM.addArticlesToDom(data));
 					});
 				}
-			});
+				document.querySelector("#articleTitle").value = "";
+				document.querySelector("#articleDate").value = "";
+				document.querySelector("#articleURL").value = "";
+				document.querySelector("#articleSummary").value = "";
+			} else {
+				API.editArticle(hiddenId).then(() => {
+					API.getArticles().then(data => DOM.addArticlesToDom(data));
+				});
+			}
+		});
 	},
 	//delete article
 	deleteArticle: () => {
-		document
-			.querySelector("#articlesOutput")
-			.addEventListener("click", event => {
-				if (event.target.id.startsWith("delete--")) {
-					const articleToDelete = event.target.id.split("--")[1];
-					API.deleteArticle(articleToDelete).then(() => {
-						API.getArticles().then(data => DOM.addArticlesToDom(data));
-					});
-				}
-			});
+		document.querySelector("#articlesOutput").addEventListener("click", event => {
+			if (event.target.id.startsWith("delete--")) {
+				const articleToDelete = event.target.id.split("--")[1];
+				API.deleteArticle(articleToDelete).then(() => {
+					API.getArticles().then(data => DOM.addArticlesToDom(data));
+				});
+			}
+		});
 	},
 	//when edit article button is pressed, populate article info into form
 	editArticle: () => {
-		document
-			.querySelector("#articlesOutput")
-			.addEventListener("click", event => {
-				if (event.target.id.startsWith("edit--")) {
-					const articleToEdit = event.target.id.split("--")[1];
-					API.getArticle(articleToEdit).then(data => {
-						document.querySelector("#articleId").value = data.id;
-						document.querySelector("#articleDate").value = data.date;
-						document.querySelector("#articleTitle").value = data.title;
-						document.querySelector("#articleURL").value = data.url;
-						document.querySelector("#articleSummary").value = data.summary;
-					});
-				}
-			});
+		document.querySelector("#articlesOutput").addEventListener("click", event => {
+			if (event.target.id.startsWith("edit--")) {
+				const articleToEdit = event.target.id.split("--")[1];
+				API.getArticle(articleToEdit).then(data => {
+					document.querySelector("#articleId").value = data.id;
+					document.querySelector("#articleDate").value = data.date;
+					document.querySelector("#articleTitle").value = data.title;
+					document.querySelector("#articleURL").value = data.url;
+					document.querySelector("#articleSummary").value = data.summary;
+				});
+			}
+		});
 	}
 };
 

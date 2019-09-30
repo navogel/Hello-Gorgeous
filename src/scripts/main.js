@@ -13,10 +13,7 @@ import messageEvents from "./messages/eventListeners";
 
 authorization();
 
-console.log(
-	"main.js sessionStorage.userId: ",
-	sessionStorage.getItem("userId")
-);
+console.log("main.js sessionStorage.userId: ", sessionStorage.getItem("userId"));
 
 //event event listeners
 
@@ -47,20 +44,16 @@ taskEvents.standardTasks();
 
 //Friend request hover
 document.querySelector("#hover-confirm-friend").style.display = "none";
-document
-	.querySelector("#submitFriend")
-	.addEventListener("click", function(event) {
-		friendEvents.addToFriendsList(
-			document.querySelector("#friendID").value,
-			sessionStorage.getItem("userId")
-		)
-		document.querySelector("#hover-confirm-friend").style.display = "none";
-	});
-document
-	.querySelector("#closeFriendHover")
-	.addEventListener("click", function(event) {
-		document.querySelector("#hover-confirm-friend").style.display = "none";
-	});
+document.querySelector("#submitFriend").addEventListener("click", function(event) {
+	friendEvents.addToFriendsList(
+		document.querySelector("#friendID").value,
+		sessionStorage.getItem("userId")
+	);
+	document.querySelector("#hover-confirm-friend").style.display = "none";
+});
+document.querySelector("#closeFriendHover").addEventListener("click", function(event) {
+	document.querySelector("#hover-confirm-friend").style.display = "none";
+});
 
 const chatObject = {
 	returnMessagesArray: function(fetchedArray, session) {
@@ -68,8 +61,7 @@ const chatObject = {
 		//Populates the fetch string with multiple querys.
 		const mainUserNum = parseInt(session);
 		document.querySelector("#chat-room").innerHTML = "";
-		let fetchString =
-			"http://localhost:8088/messages?_expand=user&_sort=date&_order=asc";
+		let fetchString = "http://localhost:8088/messages?_expand=user&_sort=date&_order=asc";
 		return fetch(fetchString)
 			.then(data => data.json())
 			.then(parsedData => {
@@ -82,11 +74,11 @@ const chatObject = {
 							`
 							<div class="myChatContainer">
 							<img class="chatImg" src="/src/images/users/${element.userId}.png">
-                            <div id = "message-${element.id}" class = "message myMsg">
-                                
-								<div class="arrow-left"></div>
-								<span id = "userId-${element.userId}" class = "message-name">${element.user.userName}::</span>
-								<span id = "date-${element.id}" class = "message-date">${element.date}:</span>
+							<div id = "message-${element.id}" class = "message myMsg">
+								<div class= "msgTop">
+								<span id = "userId-${element.userId}" class = "message-name">${element.user.userName}:</span>
+								<span id = "date-${element.id}" class = "message-date">${element.date}</span>
+								</div>
 								<p id = "innermessage-${element.userId}" class = "message-value">${element.message}</p>
 								<div id = "edit-${element.id}" class = "edit-button">Edit</div>
 							</div>
@@ -94,20 +86,24 @@ const chatObject = {
                     `;
 					} else {
 						document.querySelector("#chat-room").innerHTML += `
-                            <div class="friendChatContainer">
-								
+                            <div class="friendChatContainer">	
 							<div id = "message-${element.id}" class = "message friendMsg">
-								<svg class="arrow-right" viewbox="0 0 50 50" height="20px">
-									<path d="M1 50 V10 Q1 1 10 1 H50z" fill="white" />
-								</svg>
-								<span id = "userId-${element.userId}" class = "message-name">${element.user.userName}::</span>
-								<span id = "date-${element.id}" class = "message-date">${element.date}:</span>
+								<div class= "msgTop">
+									<span id = "userId-${element.userId}" class = "message-name">${element.user.userName}:</span>
+									<span id = "date-${element.id}" class = "message-date">${element.date}</span>
+								</div>
 								<p id = "innermessage-${element.id}" class = "message-value">${element.message}</p>
 								
 								</div>
 							<img class="chatImg" src="/src/images/users/${element.userId}.png">
+							
 						</div>
-                        `;
+						`;
+						//SVG/Shadow Options for speaking arrows
+						// <svg class="arrow-right" viewbox="0 0 50 50" height="20px">
+						// <path d="M1 50 V10 Q1 1 10 1 H50z" fill="white" />
+						// </svg>
+						//<div class="arrow-left"></div>
 					}
 				});
 				return parsedData;
@@ -116,10 +112,9 @@ const chatObject = {
 				if (sessionStorage.getItem("userId") !== "") {
 					parsedData.forEach(element => {
 						document
-							.querySelector(`#message-${element.id} > .message-name`)
+							.querySelector(`#message-${element.id} > .msgTop > .message-name`)
 							.addEventListener("click", function(event) {
-								document.querySelector("#hover-confirm-friend").style.display =
-									"block";
+								document.querySelector("#hover-confirm-friend").style.display = "block";
 								const splitUserID = document
 									.querySelector(`#message-${element.id} > .message-name`)
 									.id.split("-");
@@ -149,8 +144,9 @@ document.querySelector("#submitChat").addEventListener("click", function() {
 	} else {
 		if (document.querySelector("#message-number").value === "0") {
 			messageEvents.addChat(sessionStorage.getItem("userId")).then(data => {
-				chatObject.returnMessagesArray(data, sessionStorage.getItem("userId"))
-				.then(data => {window.scrollTo(0, document.querySelector("body").scrollHeight);})
+				chatObject.returnMessagesArray(data, sessionStorage.getItem("userId")).then(data => {
+					window.scrollTo(0, document.querySelector("body").scrollHeight);
+				});
 			});
 		} else {
 			console.log(document.querySelector("#submitChat").scrollHeight);
@@ -159,8 +155,9 @@ document.querySelector("#submitChat").addEventListener("click", function() {
 				document.querySelector("#edit-message").innerText = "";
 				document.querySelector("#submitChat").innerHTML = "Submit";
 				document.querySelector("#message-box").value = "";
-				chatObject.returnMessagesArray(data, sessionStorage.getItem("userId"))
-				.then(data => {window.scrollTo(0, document.querySelector("body").scrollHeight);})
+				chatObject.returnMessagesArray(data, sessionStorage.getItem("userId")).then(data => {
+					window.scrollTo(0, document.querySelector("body").scrollHeight);
+				});
 			});
 		}
 	}
@@ -174,16 +171,12 @@ document.querySelector("#submitSearch").addEventListener("click", function() {
 	friendEvents.friendSearch(event, sessionStorage.getItem("userId"));
 });
 if (sessionStorage.getItem("userId") !== "" && sessionStorage.getItem("userId") !== null) {
-
 	document.querySelector("#submitSearch").disabled = false;
 	friendEvents
 		.returnFriendArray(sessionStorage.getItem("userId"))
 		.then(data => {
 			friendArray = data;
-			chatObject.returnMessagesArray(
-				friendArray,
-				sessionStorage.getItem("userId")
-			);
+			chatObject.returnMessagesArray(friendArray, sessionStorage.getItem("userId"));
 			friendEvents.fillFriendList(friendArray);
 			return friendArray;
 		})

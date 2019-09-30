@@ -16,7 +16,8 @@
 	<body>
 		<div class="leftCol">
 			<div class="logoContainer">
-				<img height="150px" width="auto" src="/src/images/onlineFriends.png" />
+				<img height="200px" width="auto" src="/src/images/bow.jpg" />
+				<h5>Sharing life with the people you love.</h5>
 			</div>
 			<article id="container"></article>
 			<div class="friendsList">
@@ -38,25 +39,33 @@
 			</div>
 		</div>
 		<div class="rightCol">
-			<!-- login section -->
+			<div class="title">
+				<div class="firstWord">
+					<img height="50px" src="/src/images/letters/h.png" />
+					<img height="50px" src="/src/images/letters/e.png" />
+					<img height="50px" src="/src/images/letters/l.png" />
+					<img height="50px" src="/src/images/letters/l.png" />
+					<img height="50px" src="/src/images/letters/o.png" />
+				</div>
+				<div class="secondWord">
+					<img height="50px" src="/src/images/letters/g.png" />
+					<img height="50px" src="/src/images/letters/o.png" />
+					<img height="50px" src="/src/images/letters/r.png" />
+					<img height="50px" src="/src/images/letters/g.png" />
+					<img height="50px" src="/src/images/letters/e.png" />
+					<img height="50px" src="/src/images/letters/o.png" />
+					<img height="50px" src="/src/images/letters/u.png" />
+					<img height="50px" src="/src/images/letters/s.png" />
+				</div>
+			</div>
 
 			<!-- tasks Section -->
 			<section class="dropBtn" id="tasks">
-				<h1 class="noClick">TASKS</h1>
+				<h1 class="noClick">Goals</h1>
 				<div id="myDropdown" class="dropdown-content">
 					<div id="tasksInput">
-						<input
-							class="textField"
-							type="text"
-							placeholder="Task Title"
-							id="taskTitle"
-						/>
-						<input
-							class="textField"
-							type="date"
-							placeholder="Task Due"
-							id="taskDueDate"
-						/>
+						<input class="textField" type="text" placeholder="Task Title" id="taskTitle" />
+						<input class="textField" type="date" placeholder="Task Due" id="taskDueDate" />
 						<!-- <input type="checkbox" id="taskCompleted" value="false" /> -->
 						<!-- <input type="text" placeholder="task Completed" id="taskCompleted" /> -->
 						<input style="display: none" name="" id="taskId" />
@@ -67,10 +76,10 @@
 					<hr />
 					<div>
 						<button class="submitBtn" type="button" id="unfinishedTasks">
-							Unfinished
+							In process
 						</button>
 						<button class="submitBtn" type="button" id="finishedTasks">
-							Finished
+							completed
 						</button>
 					</div>
 					<article id="tasksOutput"></article>
@@ -78,33 +87,18 @@
 			</section>
 			<!-- articles Section -->
 			<section class="dropBtn" id="articles">
-				<h1 class="noClick">ARTICLES</h1>
+				<h1 class="noClick">Links</h1>
 				<div id="myDropdown" class="dropdown-content">
 					<div id="articlesInput">
-						<input
-							class="textField"
-							type="date"
-							placeholder="articleDate"
-							id="articleDate"
-						/>
-						<input
-							class="textField"
-							type="text"
-							placeholder="Article Title"
-							id="articleTitle"
-						/>
+						<input class="textField" type="date" placeholder="articleDate" id="articleDate" />
+						<input class="textField" type="text" placeholder="Article Title" id="articleTitle" />
 						<input
 							class="textField"
 							type="text"
 							placeholder="Article Summary"
 							id="articleSummary"
 						/>
-						<input
-							class="textField"
-							type="text"
-							placeholder="article Url"
-							id="articleURL"
-						/>
+						<input class="textField" type="text" placeholder="article Url" id="articleURL" />
 						<input style="display: none" name="" id="articleId" />
 						<button class="submitBtn" type="button" id="submitArticle">
 							Submit article
@@ -116,27 +110,12 @@
 
 			<!-- Events Section -->
 			<section class="dropBtn" id="events">
-				<h1 class="noClick">EVENTS</h1>
+				<h1 class="noClick">Meetups</h1>
 				<div id="myDropdown" class="dropdown-content">
 					<div id="eventsInput">
-						<input
-							class="textField"
-							type="date"
-							placeholder="eventDate"
-							id="eventDate"
-						/>
-						<input
-							class="textField"
-							type="text"
-							placeholder="Event Title"
-							id="eventTitle"
-						/>
-						<input
-							class="textField"
-							type="text"
-							placeholder="Event location"
-							id="eventLocation"
-						/>
+						<input class="textField" type="date" placeholder="eventDate" id="eventDate" />
+						<input class="textField" type="text" placeholder="Event Title" id="eventTitle" />
+						<input class="textField" type="text" placeholder="Event location" id="eventLocation" />
 						<input style="display: none" name="" id="eventId" />
 						<button class="submitBtn" type="button" id="submitEvent">
 							Submit Event
@@ -148,7 +127,7 @@
 			<!--Chat Section-->
 
 			<article id="chatroom-container">
-				<h1 class="noClick">CHATROOM</h1>
+				<h1 class="noClick">Message Hub</h1>
 				<div id="chat-room"></div>
 				<form>
 					<input hidden id="message-number" value="0" />
