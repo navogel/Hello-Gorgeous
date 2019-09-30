@@ -1,4 +1,4 @@
-# Nutshell: The Information Dashboard - Project Requirements
+# Hello Gorgeous: The Information Dashboard - Group Project
 
 Mission: Create a multi-user social message board with the ability to add + follow friends, events, messages, news, and tasks.
 UX/UI Target Demographic: LGBTQ Community
@@ -12,6 +12,9 @@ To view this completed project:
 5. manipulate data, remove friends, add/edit/delete items.
 6. Create a new user, or log in with any other user by entering their username and using `pass` for their password.
 
+## Creators
+
+James McClarty, Nate Vogel, Alex Momotyuk
 
 # Project Instructions:
 
