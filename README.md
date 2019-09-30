@@ -1,4 +1,21 @@
-# Nutshell: The Information Dashboard
+# Nutshell: The Information Dashboard - Project Requirements
+
+Mission: Create a multi-user social message board with the ability to add + follow friends, events, messages, news, and tasks.
+UX/UI Target Demographic: LGBTQ Community
+
+To view this completed project:
+
+1. Clone this repository
+2. Run `npm install`
+3. Run `npm start`
+4. Sign in with user `Steve` and password `pass`.
+5. manipulate data, remove friends, add/edit/delete items.
+6. Create a new user, or log in with any other user by entering their username and using `pass` for their password.
+
+
+# Project Instructions:
+
+
 
 ## Setup: Follow these steps exactly
 
@@ -26,88 +43,10 @@ You will be utilizing all of the skills and concepts that you've learned up to t
 1. Modular code with Webpack
 1. Relational data
 
-To start you off, here's an example of what the resources in your API should look like once it's populated with some data from your application.
-
-### Users
-
-```json
-{ "id": 1, "username": "Steve", "email": "me@me.com" }
-```
-
-### Messages
-
-```json
-{ "id": 1, "userId": 1, "message": "What's up?" }
-```
-
-### News
-
-```json
-{
-    "id": 1,
-    "userId": 2,
-    "url": "https://www.quantamagazine.org/newfound-wormhole-allows-information-to-escape-black-holes-20171023/",
-    "title": "Wormholes Allow Information to Escape Black Holes",
-    "synopsis": "Check out this recent discovery about workholes"
-}
-```
-
-### Friends
-
-```json
-{ "id": 1, "userId": 1, "otherFriendId": 3 }
-```
-
-### Tasks
-
-```json
-{ "id": 1, "userId": 3, "task": "Take out garbage" }
-```
 
 ## Professional Requirements
 
 1. All teammates must be using Webpack to compile their code.
 1. Each module should have a comment at the top with the following info: author(s) and purpose of module
 1. The README for your project should include instructions on how another person can download and run the application
-1. An ERD showing the database relationships. A screenshot/image should be included on your README.
 
-## How to Handle Authentication
-
-Be very clear that what you will be implemting is not real authentication. It is a simulation of it using very simplistic tools.
-
-You will be using session storage to keep track of which user has logged into Nutshell. When the user fills out the registration form, you will POST their username and password to the `users` collection in your API. You will then immediately take the `id` of the object in the response and save it to session storage.
-
-```js
-sessionStorage.setItem("activeUser", user.id)
-```
-
-If you want to add a Logout feature, all you need to do it remove the session storage item.
-
-```js
-sessionStorage.removeItem("activeUser")
-```
-
-## Visual Feature List
-
-To help you along, here is a visualization of a few features, as envisioned by one of your predecessors.
-
-![nutshell features](./Nutshell.png)
-
-## Keep in mind some tips for a good usable app
-1. Use acceptable conventions
-   * Logo positioned at top left
-   * Navigation across the top or down the left side
-2. Visual hierarchy
-   * Most important information is the most prominent
-3. Break pages up into defined sections
-   * Logically related content should be related visually
-4. That which is clickable should be obviously clickable.
-5. Eliminate distractions
-   * Use only two typefaces
-   * Limit color pallet (3 colors with black and white)
-   * Use a grid
-6. Support scanning (users don't read)
-   * Use plenty of headings
-   * Short paragraphs
-   * Bulleted lists
-7. Strive for consistency.
