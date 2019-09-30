@@ -33,6 +33,7 @@ a {
 	background-color: #967bb6;
 	margin: 0.5em;
 	border-radius: 10px;
+	padding: 0.5em;
 }
 
 /* primary layout */
@@ -75,20 +76,32 @@ body {
 }
 
 .taskContainer,
-.myChatContainer,
 .eventContainer,
 .articleContainer {
 	display: flex;
+	max-width: 83%;
+}
+
+.myChatContainer {
+	display: flex;
+	max-width: 90%;
 }
 
 .friendsTaskContainer,
-.friendChatContainer,
 .friendEventContainer,
 .friendArticleContainer {
 	display: flex;
 	align-self: flex-end;
-	align-items: flex-end;
+	align-items: baseline;
 	justify-content: flex-end;
+	max-width: 83%;
+}
+.friendChatContainer {
+	display: flex;
+	align-self: flex-end;
+	align-items: baseline;
+	justify-content: flex-end;
+	max-width: 90%;
 }
 
 .profileImg {
@@ -121,17 +134,12 @@ body {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	overflow: auto;
-	height: auto;
+	padding: 0.5em 0.5em;
 }
 
 #friends-list {
 	display: flex;
 	flex-direction: column;
-	/* width: 15%; */
-	/* overflow: auto; */
-	/* height: 420px; */
-	/* border-left: 0.01em solid black; */
 	justify-content: center;
 }
 
@@ -154,7 +162,9 @@ body {
 
 .message {
 	/* border-bottom: 2px lightgray solid; */
-	padding-left: 2%;
+
+	display: flex;
+	flex-direction: column;
 }
 
 .message-value {
@@ -192,10 +202,8 @@ body {
 }
 
 .chatImg {
-	margin: 0.5em 1em;
-	height: 50px;
-	width: 50px;
-	margin-top: 20px;
+	margin-top: 0.5em;
+	height: 40px;
 }
 /* tasks css */
 
@@ -403,9 +411,11 @@ body {
 
 .edit-button {
 	position: relative;
+	align-self: flex-end;
 	left: 29px;
 	bottom: -5px;
-	display: inline-block;
+	display: block;
+	width: min-content;
 	padding: 0.1em 0.8em;
 	padding-bottom: 0.2em;
 	border: 0.07em solid white;
@@ -606,9 +616,10 @@ fieldset {
 
 .auth-section {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 .logoContainer {

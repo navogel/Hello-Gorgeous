@@ -26,7 +26,7 @@ const API = {
 					searchString += `&userId=${id}`;
 				});
 				return fetch(
-					`http://localhost:8088/events/?userId=${currentUserId}${searchString}&_sort=date&_order=asc`
+					`http://localhost:8088/events/?userId=${currentUserId}${searchString}&_expand=user&_sort=date&_order=asc`
 				).then(response => response.json());
 			});
 	},
@@ -36,9 +36,7 @@ const API = {
 		});
 	},
 	getEvent: eventId => {
-		return fetch(`http://localhost:8088/events/${eventId}`).then(response =>
-			response.json()
-		);
+		return fetch(`http://localhost:8088/events/${eventId}`).then(response => response.json());
 	},
 	editEvent: eventId => {
 		const updatedObject = {
@@ -92,7 +90,7 @@ const WEB = {
 		<div class="friendEventContainer">
             <div class="friendsEvents">
                 <h5>${obj.title}</h5>
-                <p>Date: ${obj.date} </p>
+                <p>Organizer: ${obj.user.userName} </p><p>Date: ${obj.date} </p>
                 <p>location: ${obj.location}</p>
 			</div>
 			<div class="userImage">
@@ -124,10 +122,7 @@ const eventEvents = {
 	},
 	generateEventsOnClick: () => {
 		window.addEventListener("click", event => {
-			if (
-				event.target.id === "events" &&
-				event.target.classList.contains("dropBtn")
-			) {
+			if (event.target.id === "events" && event.target.classList.contains("dropBtn")) {
 				console.log("you clicked events");
 				API.getEvents().then(data => DOM.addEventsToDom(data));
 			}
